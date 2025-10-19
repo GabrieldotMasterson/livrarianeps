@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,21 +20,28 @@
     <main id="main-form">
 
         <form class="form-book" action="">
-            <label class="label-form" for="nome">Nome do livro</label>
-            <input class="input-form" type="text" name="nome" id="form-nome">
-            <label class="label-form" for="nome">Avaliacao</label>
-            <input class="input-form" type="text" name="avaliacao" id="form-avaliacao">
-            <label class="nota-form" for="nota">qual sua nota</label>
-            <select name="nota" id="form-nota">
+            <label class="label-form" for="form-nome">Nome do livro</label>
+            <input class="input-form" type="text" name="nome" id="form-nome" required>
+
+            <label class="label-form" for="form-avaliacao">Avaliação</label>
+            <input class="input-form" type="text" name="avaliacao" id="form-avaliacao" required>
+
+            <label class="nota-form" for="form-nota">Qual sua nota</label>
+            <select name="nota" id="form-nota" required>
+                <option value="vazia" selected>vazia</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option value="vazia" selected>vazia</option>
             </select>
-        </form>
 
+            <label class="label-form" for="form-data">Data de publicação</label>
+            <input class="input-form" type="date" name="data_publicacao" id="form-data" required>
+
+            <label class="label-form" for="form-descricao">Descrição</label>
+            <textarea class="input-form" name="descricao" id="form-descricao" rows="5" required></textarea>
+        </form>
 
     </main>
 

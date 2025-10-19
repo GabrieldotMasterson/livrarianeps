@@ -1,4 +1,14 @@
 
+
+:root{
+    --bg-card-shadow: rgba(0,0,0,0.08);
+    --bg-card-shadow-hover: rgba(0,0,0,0.14);
+    --accent: greenyellow;
+    --radius: 12px;
+    --fw-label: 600;
+    font-size: 16px; /* base */
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,10 +18,44 @@
     color: inherit;
 }
 
+html { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
 button, a, .add-btn, .card-livro-button {
     cursor: pointer;
 }
+
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: var(--fw-label);
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.95rem;
+    transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 4px rgba(76,175,80,0.08);
+    transform: translateY(-1px);
+}
+
 
 .container {
     width: 100%;
@@ -20,7 +64,7 @@ button, a, .add-btn, .card-livro-button {
     padding: 1rem;
 }
 
-/* nav */
+
 .nav-center {
     width: 100%;
     display: flex;
@@ -37,9 +81,9 @@ button, a, .add-btn, .card-livro-button {
     text-align: center;
 }
 
-/* botão de add */
+
 .add-btn {
-    background-color: greenyellow;
+    background-color: var(--accent);
     border: none;
     padding: 0.75rem 1rem;
     text-align: center;
@@ -48,6 +92,12 @@ button, a, .add-btn, .card-livro-button {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .estante {
@@ -65,10 +115,19 @@ button, a, .add-btn, .card-livro-button {
     width: 100%;
     max-width: 640px;
     border: 1px solid rgb(177, 176, 176);
-    border-radius: 12px;
+    border-radius: var(--radius);
     gap: 1rem;
     overflow: hidden;
     background: #fff;
+    box-shadow: 0 6px 18px var(--bg-card-shadow);
+    transform: translateZ(0);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+    animation: fadeUp 420ms ease both;
+}
+
+.card-livro:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px var(--bg-card-shadow-hover);
 }
 
 .card-livro-img img,
@@ -79,24 +138,28 @@ button, a, .add-btn, .card-livro-button {
     object-fit: cover;
 }
 
-
 .card-livro-txt {
     text-align: center;
     padding: 0 1rem 1rem;
 }
 
-
 .card-livro-button {
-    background-color: greenyellow;
+    background-color: var(--accent);
     border: none;
     padding: 0.75rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
+.card-livro-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
 
+/* footer */
 .footer-center {
     margin-top: 3rem;
     display: flex;
@@ -108,7 +171,6 @@ button, a, .add-btn, .card-livro-button {
 #footer-txt {
     font-weight: 100;
 }
-
 
 .main-details {
     display: flex;
@@ -126,10 +188,11 @@ button, a, .add-btn, .card-livro-button {
     border-radius: 8px;
     gap: 1rem;
     padding: 2rem;
-    align-items: center;
+    align-items: stretch;
     background: #fff;
+    box-shadow: 0 8px 28px var(--bg-card-shadow);
+    transition: box-shadow 240ms ease, transform 240ms ease;
 }
-
 
 #main-form{
     display: flex;
@@ -151,7 +214,15 @@ button, a, .add-btn, .card-livro-button {
     width: 100%;
 }
 
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 @media (min-width: 600px) {
+    :root { font-size: 17px; } 
+
     .nav-center {
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -179,6 +250,8 @@ button, a, .add-btn, .card-livro-button {
 }
 
 @media (min-width: 1024px) {
+    :root { font-size: 18px; } 
+
     .container {
         max-width: 1100px;
     }
@@ -188,7 +261,13 @@ button, a, .add-btn, .card-livro-button {
         max-width: none;
     }
 
+   
     .card-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+        padding: 3rem;
         width: 60%;
         max-width: 900px;
     }
@@ -199,3 +278,13 @@ button, a, .add-btn, .card-livro-button {
         height: auto;
     }
 }
+
+.hidden-visually {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+img { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
